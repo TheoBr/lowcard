@@ -13,7 +13,7 @@ const StyledCard = styled.div<CardProperties>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 8px;
   margin: 2rem;
   font-size: 80px;
