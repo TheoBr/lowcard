@@ -24,6 +24,7 @@ const StyledCard = styled.div<CardProperties>`
 
 type CardViewProps = CardProperties & {
   removeCard?: () => void;
+  copyURL?: () => void;
 };
 
 export const CardView: React.FC<CardViewProps> = (card) => {
@@ -37,17 +38,18 @@ export const CardView: React.FC<CardViewProps> = (card) => {
       {card.removeCard && (
         <RemoveButton show={showButtons} onClick={card.removeCard} />
       )}
+      {card.copyURL && <CopyButton show={showButtons} onClick={card.copyURL} />}
       {card.char}
     </StyledCard>
   );
 };
 
-export interface RemoveButtonProps {
+export interface ButtonProps {
   onClick: () => void;
   show: boolean;
 }
 
-const StyledRemoveButton = styled.button<RemoveButtonProps>`
+const StyledRemoveButton = styled.button<ButtonProps>`
   font-size: 1rem;
   top: 0;
   right: 0;
@@ -56,6 +58,19 @@ const StyledRemoveButton = styled.button<RemoveButtonProps>`
   color: red;
 `;
 
-export const RemoveButton: React.FC<RemoveButtonProps> = (props) => {
+export const RemoveButton: React.FC<ButtonProps> = (props) => {
   return <StyledRemoveButton {...props}>X</StyledRemoveButton>;
+};
+
+const StyledCopyButton = styled.button<ButtonProps>`
+  font-size: 1rem;
+  top: 0;
+  left: 0;
+  display: ${(props) => (props.show ? "block" : "none")};
+  position: absolute;
+  color: red;
+`;
+
+export const CopyButton: React.FC<ButtonProps> = (props) => {
+  return <StyledCopyButton {...props}>📋</StyledCopyButton>;
 };

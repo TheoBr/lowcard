@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { useLocalStorage } from "../../utils/use-storage";
-import { CardProperties, CardView } from "./card";
-import { CardCreator } from "./card-creator";
+import { useLocalStorage } from "../utils/use-storage";
+import { CardProperties, CardView } from "../features/cards/card";
+import { CardCreator } from "../features/cards/card-creator";
+import querystring from "query-string";
 
 const CARDS_STORAGE_KEY = "cards-storage-key";
 
@@ -22,7 +23,7 @@ const CardGridLayout = styled.div`
   flex-wrap: wrap;
 `;
 
-export const CardPage = () => {
+export const CardCreatorPage = () => {
   const [cards, setCards] = useLocalStorage<CardProperties[]>(
     CARDS_STORAGE_KEY,
     []
@@ -45,6 +46,13 @@ export const CardPage = () => {
             {...card}
             key={index}
             removeCard={() => removeCard(index)}
+            copyURL={() =>
+              navigator.clipboard.writeText(
+                `${window.location.origin}/card?${querystring.stringify({
+                  ...card,
+                })}`
+              )
+            }
           />
         ))}
       </CardGridLayout>

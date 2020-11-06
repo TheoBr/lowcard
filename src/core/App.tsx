@@ -1,6 +1,8 @@
 import React from "react";
-import { CardPage } from "../features/cards/card-page";
+import { CardCreatorPage } from "../pages/card-creator-page";
 import { ThemeProvider } from "styled-components";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { CardViewPage } from "../pages/card-view-page";
 
 function App() {
   return (
@@ -11,9 +13,16 @@ function App() {
         font: "Montserrat",
       }}
     >
-      <div className="App">
-        <CardPage />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/card">
+            <CardViewPage />
+          </Route>
+          <Route path="/">
+            <CardCreatorPage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

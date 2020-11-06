@@ -20,8 +20,8 @@ A card and chat app
 
 ### Part 1
 
-- [ ] Delete button
-- [ ] Copy button
+- [x] Delete button
+- [x] Copy button
 
 ### Part 2
 
