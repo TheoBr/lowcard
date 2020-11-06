@@ -28,6 +28,10 @@ export const CardPage = () => {
     []
   );
 
+  const removeCard = (cardID: number) => {
+    setCards((cards) => cards.filter((_, i) => i !== cardID));
+  };
+
   return (
     <CardPageLayout>
       <CardCreator
@@ -37,7 +41,11 @@ export const CardPage = () => {
       />
       <CardGridLayout>
         {cards.map((card, index) => (
-          <CardView {...card} key={index} />
+          <CardView
+            {...card}
+            key={index}
+            removeCard={() => removeCard(index)}
+          />
         ))}
       </CardGridLayout>
     </CardPageLayout>
