@@ -71,9 +71,19 @@ export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
             onPaste={(paste) => {
               // Paste is not handled properly with onInput, handled separately here
               const input = paste.clipboardData.getData("text");
+
+              // Get codePoint for first character in paste (charAt doesn't handle emoji)
+              const charVal = input.codePointAt(0);
+
+              // Early return if no values found
+              if (charVal === undefined) {
+                return;
+              }
+
+              // Update state with new char
               setCardProps((c) => ({
                 ...c,
-                char: input[input.length - 1],
+                char: String.fromCodePoint(charVal),
               }));
             }}
             onChange={(event) => {
