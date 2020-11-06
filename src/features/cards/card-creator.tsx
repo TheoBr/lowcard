@@ -25,12 +25,16 @@ const CreatorWrapper = styled.div`
   background-size: auto, 300px;
 `;
 
+const DEFAULT_CARD = {
+  backgroundColor: "#000000",
+  textColor: "#ffffff",
+  char: "A",
+};
+
 export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
-  const [cardProps, setCardProps] = React.useState<CardProperties>({
-    backgroundColor: "#000000",
-    textColor: "#ffffff",
-    char: "A",
-  });
+  const [cardProps, setCardProps] = React.useState<CardProperties>(
+    DEFAULT_CARD
+  );
 
   return (
     <CreatorWrapper>
@@ -61,14 +65,36 @@ export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
             }
           />
           <br />
-          Character:
+          Character
           <input
             value={cardProps.char}
-            onChange={(event) => {
-              const input = event.target.value;
+            onPaste={(paste) => {
+              // Paste is not handled properly with onInput, handled separately here
+              const input = paste.clipboardData.getData("text");
               setCardProps((c) => ({
                 ...c,
                 char: input[input.length - 1],
+              }));
+            }}
+            onChange={(event) => {
+              // We need the character that was input (only exists on native event)
+              // Native event was untyped, so this had to be manually alias'd
+              const nativeEventShim = (event.nativeEvent as unknown) as {
+                data: string;
+              };
+
+              // Return early if no data (usually from delete key presses)
+              if (
+                nativeEventShim.data === null ||
+                nativeEventShim.data === " "
+              ) {
+                return;
+              }
+
+              // Update state with new "char"
+              setCardProps((c) => ({
+                ...c,
+                char: nativeEventShim.data,
               }));
             }}
           />
@@ -76,13 +102,8 @@ export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
           <div>
             <button
               onClick={() => {
-                if (
-                  cardProps?.backgroundColor &&
-                  cardProps?.char &&
-                  cardProps?.textColor
-                ) {
-                  addCard(cardProps as CardProperties);
-                }
+                addCard(cardProps as CardProperties);
+                setCardProps(DEFAULT_CARD);
               }}
             >
               Save card
