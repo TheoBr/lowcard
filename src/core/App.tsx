@@ -1,11 +1,20 @@
 import React from "react";
 import { CardPage } from "../features/cards/card-page";
+import { ThemeProvider } from "styled-components";
 
 function App() {
   return (
-    <div className="App">
-      <CardPage />
-    </div>
+    <ThemeProvider
+      theme={{
+        backgroundColor: "#00112A",
+        color: "#ffffff",
+        font: "Montserrat",
+      }}
+    >
+      <div className="App">
+        <CardPage />
+      </div>
+    </ThemeProvider>
   );
 }
 

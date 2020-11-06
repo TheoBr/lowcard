@@ -9,6 +9,12 @@ const CARDS_STORAGE_KEY = "cards-storage-key";
 const CardPageLayout = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.color};
+  font-family: ${(props) => props.theme.font};
+  font-weight: 700;
+  font-size: 20px;
+  min-height: 100vh;
 `;
 
 const CardGridLayout = styled.div`
