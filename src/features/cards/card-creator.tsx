@@ -83,7 +83,7 @@ export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
                 data: string;
               };
 
-              // Return early if no data (usually from delete key presses)
+              // Return early if no data (usually from delete key and space presses)
               if (
                 nativeEventShim.data === null ||
                 nativeEventShim.data === " "
