@@ -1,22 +1,31 @@
 import React from "react";
-import { CardProperties } from "./card";
+import styled from "styled-components";
+import { CardProperties, CardView } from "./card";
 
 export interface CardCreatorProps {
   addCard: (card: CardProperties) => void;
 }
 
+const CreatorLayout = styled.div`
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+`;
+
 export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
   const [cardProps, setCardProps] = React.useState<CardProperties>({
     backgroundColor: "#000000",
     textColor: "#ffffff",
-    char: "",
+    char: "A",
   });
 
   return (
-    <div>
-      <div>
+    <CreatorLayout>
+      <CardView {...cardProps} />
+      <div style={{ display: "flex", flexDirection: "column" }}>
         Background Color
-        <br />
         <input
           type="color"
           value={cardProps.backgroundColor}
@@ -27,10 +36,8 @@ export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
             }))
           }
         />
-      </div>
-      <div>
-        Text Color
         <br />
+        Text Color
         <input
           type="color"
           value={cardProps.textColor}
@@ -41,33 +48,35 @@ export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
             }))
           }
         />
-      </div>
-      <div>
-        Character:{" "}
+        <br />
+        Character:
         <input
-          onChange={(e) =>
+          value={cardProps.char}
+          onChange={(event) => {
+            const input = event.target.value;
             setCardProps((c) => ({
               ...c,
-              char: e.target.value as string,
-            }))
-          }
-        />
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            if (
-              cardProps?.backgroundColor &&
-              cardProps?.char &&
-              cardProps?.textColor
-            ) {
-              addCard(cardProps as CardProperties);
-            }
+              char: input[input.length - 1],
+            }));
           }}
-        >
-          Save card
-        </button>
+        />
+        <br />
+        <div>
+          <button
+            onClick={() => {
+              if (
+                cardProps?.backgroundColor &&
+                cardProps?.char &&
+                cardProps?.textColor
+              ) {
+                addCard(cardProps as CardProperties);
+              }
+            }}
+          >
+            Save card
+          </button>
+        </div>
       </div>
-    </div>
+    </CreatorLayout>
   );
 };
