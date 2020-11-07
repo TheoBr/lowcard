@@ -5,7 +5,7 @@ import linkify from "linkify-it";
 import { Message } from "../../core/schema";
 
 const StyledMessage = styled.div`
-  display: flex;
+  display: inline-block;
   padding: 1rem;
 `;
 const Author = styled.div`
@@ -34,7 +34,7 @@ export const MessageItem: React.FC<Message> = (message) => {
   console.log(links);
   return (
     <StyledMessage>
-      <Author>{message.fromAccount.name + ":"}</Author>
+      <Author>{message.fromAccount.name}</Author>
       <ReactLinkify
         componentDecorator={(link, decoratedText) => {
           return <StyledLink href={link}>{decoratedText}</StyledLink>;

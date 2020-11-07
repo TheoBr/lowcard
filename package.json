@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/linkify-it": "^2.1.0",
     "linkify-it": "^3.0.2",
+    "metascraper": "^5.14.20",
     "query-string": "^6.13.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

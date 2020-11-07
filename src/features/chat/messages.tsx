@@ -74,6 +74,7 @@ const StyledInput = styled.input`
   flex-grow: 1;
   font-size: 20px;
   padding: 1rem;
+  margin-right: 1rem;
   border: none;
   color: ${(props) => props.theme.color};
 `;
@@ -109,7 +110,7 @@ export const NewMessageInput: React.FC<NewMessageProps> = ({ sendMessage }) => {
         }}
         placeholder="Send a message"
       />
-      <StyledButton aria-label="Add an attachment">📎 </StyledButton>
+      <StyledButton aria-label="Add an attachment">📎</StyledButton>
       <StyledButton onClick={send}>Send</StyledButton>
     </StyledMessageInputContainer>
   );
