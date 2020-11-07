@@ -4,6 +4,7 @@ import styled from "styled-components";
 import linkify from "linkify-it";
 import { Message } from "../../core/schema";
 import { CardView } from "../cards/card";
+import { getCardParamsFromURL } from "../../utils/get-params-from-url";
 
 const StyledMessage = styled.div`
   display: inline-block;
@@ -82,7 +83,7 @@ export const MetadataView: React.FC<{ link: linkify.Match }> = ({ link }) => {
 
   // Card embed
   if (url.hostname === window.location.hostname) {
-    const cardProps = getCardParamsFromURL(url);
+    const cardProps = getCardParamsFromURL(url.searchParams);
     if (cardProps) {
       return (
         <CardView
@@ -96,17 +97,4 @@ export const MetadataView: React.FC<{ link: linkify.Match }> = ({ link }) => {
   }
 
   return null;
-};
-
-const getCardParamsFromURL = (url: URL) => {
-  const { searchParams } = url;
-  const char = searchParams.get("char");
-  const backgroundColor = searchParams.get("backgroundColor");
-  const textColor = searchParams.get("textColor");
-
-  if (!char || !backgroundColor || !textColor) {
-    return;
-  }
-
-  return { char, backgroundColor, textColor };
 };

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { CardView } from "../features/cards/card";
 import { PageLayout } from "../ui/page";
+import { getCardParamsFromURL } from "../utils/get-params-from-url";
 
 const CardPageLayout = styled(PageLayout)`
   display: flex;
@@ -19,23 +20,12 @@ const CardPageLayout = styled(PageLayout)`
 `;
 
 export const CardViewPage = () => {
-  const cardProps = getCardParamsFromURL();
+  const cardProps = getCardParamsFromURL(
+    new URLSearchParams(window.location.search)
+  );
   return (
     <CardPageLayout>
       {cardProps ? <CardView {...cardProps} /> : <div>No card found</div>}
     </CardPageLayout>
   );
-};
-
-export const getCardParamsFromURL = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const char = urlParams.get("char");
-  const backgroundColor = urlParams.get("backgroundColor");
-  const textColor = urlParams.get("textColor");
-
-  if (!char || !backgroundColor || !textColor) {
-    return;
-  }
-
-  return { char, backgroundColor, textColor };
 };
