@@ -3,6 +3,7 @@ import ReactLinkify from "react-linkify";
 import styled from "styled-components";
 import linkify from "linkify-it";
 import { Message } from "../../core/schema";
+import { CardView } from "../cards/card";
 
 const StyledMessage = styled.div`
   display: inline-block;
@@ -59,19 +60,34 @@ export const MessageItem: React.FC<Message> = (message) => {
   );
 };
 
-const supportedHosts = ["twitter.com", window.location.hostname, "youtube.com"];
-
 export const MetadataView: React.FC<{ link: linkify.Match }> = ({ link }) => {
   const url = new URL(link.url);
-
-  // Early escape if link type isn't supported
-  if (!supportedHosts.includes(url.hostname)) {
-    return null;
-  }
 
   // Twitter embed
   if (url.hostname === "twitter.com") {
     return <div>Tweet</div>;
   }
-  return <div>{url.host}</div>;
+
+  // Card embed
+  if (url.hostname === window.location.hostname) {
+    const cardProps = getCardParamsFromURL(url);
+    if (cardProps) {
+      return <CardView {...cardProps} />;
+    }
+  }
+
+  return null;
+};
+
+const getCardParamsFromURL = (url: URL) => {
+  const { searchParams } = url;
+  const char = searchParams.get("char");
+  const backgroundColor = searchParams.get("backgroundColor");
+  const textColor = searchParams.get("textColor");
+
+  if (!char || !backgroundColor || !textColor) {
+    return;
+  }
+
+  return { char, backgroundColor, textColor };
 };
