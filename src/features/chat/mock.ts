@@ -1,8 +1,9 @@
 import { Account, Message } from "../../core/schema";
+import { v4 } from "uuid";
 
 export const mockAccountFactory: () => Account = () => {
   return {
-    uuid: "",
+    uuid: v4(),
     name: "theo",
     profileImageUrl: "",
   };
@@ -10,7 +11,7 @@ export const mockAccountFactory: () => Account = () => {
 
 export const mockMessageFactory: () => Message = () => {
   return {
-    uuid: "",
+    uuid: v4(),
     name: "theo",
     profileImageUrl: "",
     fromAccount: mockAccountFactory(),
