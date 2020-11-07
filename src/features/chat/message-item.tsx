@@ -84,7 +84,14 @@ export const MetadataView: React.FC<{ link: linkify.Match }> = ({ link }) => {
   if (url.hostname === window.location.hostname) {
     const cardProps = getCardParamsFromURL(url);
     if (cardProps) {
-      return <CardView {...cardProps} />;
+      return (
+        <CardView
+          {...cardProps}
+          onCardClick={() => {
+            window.open(url.href);
+          }}
+        />
+      );
     }
   }
 

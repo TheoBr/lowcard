@@ -28,10 +28,10 @@ I spent a lot of time on the Cards page and am really happy with how it came out
 
 ### Part 2
 
-- [ ] Embed logic
-  - [ ] URL processing
-- [ ] Attach card UI
-- [ ] Attachment logic
+- [x] Embed logic
+  - [?] URL processing
+- [x] Attach card UI
+- [x] Attachment logic
 - [ ] Pro pics?
 
 ## Things I Didn't Get To
