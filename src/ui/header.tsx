@@ -24,6 +24,8 @@ export const StyledHeaderWithBlob: React.FC = ({ children }) => {
           zIndex: 10,
           marginBottom: "-1px",
         }}
+        aria-hidden
+        alt=""
       />
     </StyledHeader>
   );
