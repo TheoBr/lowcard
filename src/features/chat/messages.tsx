@@ -104,7 +104,7 @@ export const NewMessageInput: React.FC<NewMessageProps> = ({ sendMessage }) => {
         }}
         placeholder="Send a message"
       />
-      <AttachmentButton />
+      <AttachmentButton submitAttachment={sendMessage} />
       <StyledButton onClick={send}>Send</StyledButton>
     </StyledMessageInputContainer>
   );

@@ -37,6 +37,11 @@ export const MessageItem: React.FC<Message> = (message) => {
       <Author>{message.fromAccount.name}</Author>
       <ReactLinkify
         componentDecorator={(link, decoratedText, key) => {
+          // Hide URL if localhost card link
+          if (window.location.hostname === new URL(link).hostname) {
+            return null;
+          }
+
           return (
             <StyledLink href={link} key={key}>
               {decoratedText}
@@ -65,7 +70,14 @@ export const MetadataView: React.FC<{ link: linkify.Match }> = ({ link }) => {
 
   // Twitter embed
   if (url.hostname === "twitter.com") {
-    return <div>Tweet</div>;
+    // return <div>Tweet Embed</div>;
+    return null;
+  }
+
+  // Twitter embed
+  if (url.hostname === "youtube.com") {
+    // return <div>Youtube Embed</div>;
+    return null;
   }
 
   // Card embed

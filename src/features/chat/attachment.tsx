@@ -5,6 +5,7 @@ import { StyledButton } from "../../ui/button";
 import { useLocalStorage } from "../../utils/use-storage";
 import { CardProperties, CARDS_STORAGE_KEY } from "../../core/schema";
 import { CardView } from "../cards/card";
+import { getCardURL } from "../../utils/getCardURL";
 
 const Balloon = styled.div`
   background: rgba(20, 40, 66, 0.8);
@@ -19,7 +20,9 @@ export interface AttachmentProps {
   submitAttachment: (url: string) => void;
 }
 
-export const AttachmentButton: React.FC = () => {
+export const AttachmentButton: React.FC<AttachmentProps> = ({
+  submitAttachment,
+}) => {
   const [visible, setVisible] = useState(false);
   const [
     referenceElement,
@@ -47,7 +50,12 @@ export const AttachmentButton: React.FC = () => {
           style={styles.popper}
           {...attributes.popper}
         >
-          <PickCard />
+          <PickCard
+            onCardClick={(card: CardProperties) => {
+              submitAttachment(getCardURL(card));
+              setVisible(false);
+            }}
+          />
         </Balloon>
       )}
     </>
@@ -62,7 +70,11 @@ const StyledCardList = styled.div`
   width: 100%;
 `;
 
-export const PickCard: React.FC = () => {
+export interface PickCardProps {
+  onCardClick: (card: CardProperties) => void;
+}
+
+export const PickCard: React.FC<PickCardProps> = ({ onCardClick }) => {
   const [cards, setCards] = useLocalStorage<CardProperties[]>(
     CARDS_STORAGE_KEY,
     []
@@ -76,7 +88,7 @@ export const PickCard: React.FC = () => {
         <CardView
           {...card}
           customMargin="0.5rem"
-          onCardClick={() => "card clicked"}
+          onCardClick={() => onCardClick(card)}
         />
       ))}
     </StyledCardList>

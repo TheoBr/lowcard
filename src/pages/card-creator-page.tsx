@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { useLocalStorage } from "../utils/use-storage";
 import { CardView } from "../features/cards/card";
 import { CardCreator } from "../features/cards/card-creator";
-import querystring from "query-string";
 import { PageLayout } from "../ui/page";
 import { CardProperties, CARDS_STORAGE_KEY } from "../core/schema";
+import { getCardURL } from "../utils/getCardURL";
 
 const CardPageLayout = styled(PageLayout)`
   display: flex;
@@ -40,13 +40,7 @@ export const CardCreatorPage = () => {
             {...card}
             key={index}
             removeCard={() => removeCard(index)}
-            copyURL={() =>
-              navigator.clipboard.writeText(
-                `${window.location.origin}/card?${querystring.stringify({
-                  ...card,
-                })}`
-              )
-            }
+            copyURL={() => navigator.clipboard.writeText(getCardURL(card))}
           />
         ))}
       </CardGridLayout>
