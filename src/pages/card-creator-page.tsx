@@ -5,9 +5,7 @@ import { CardView } from "../features/cards/card";
 import { CardCreator } from "../features/cards/card-creator";
 import querystring from "query-string";
 import { PageLayout } from "../ui/page";
-import { CardProperties } from "../core/schema";
-
-const CARDS_STORAGE_KEY = "cards-storage-key";
+import { CardProperties, CARDS_STORAGE_KEY } from "../core/schema";
 
 const CardPageLayout = styled(PageLayout)`
   display: flex;

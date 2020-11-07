@@ -24,3 +24,6 @@ export interface Message {
   attachments?: Attachments[];
   timestamp: Date;
 }
+
+// Universal storage keys (in lieu of backend)
+export const CARDS_STORAGE_KEY = "cards-storage-key";

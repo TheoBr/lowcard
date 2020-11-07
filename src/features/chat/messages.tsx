@@ -5,6 +5,8 @@ import { Message } from "../../core/schema";
 import { useLocalStorage } from "../../utils/use-storage";
 import { mockAccountFactory, mockMessageFactory } from "./mock";
 import { MessageItem } from "./message-item";
+import { AttachmentButton } from "./attachment";
+import { StyledButton } from "../../ui/button";
 
 const StyledMessagesContainer = styled.div`
   display: flex;
@@ -79,14 +81,6 @@ const StyledInput = styled.input`
   color: ${(props) => props.theme.color};
 `;
 
-const StyledButton = styled.button`
-  font-size: 20px;
-  border: none;
-  background: none;
-  border-radius: 8px;
-  color: ${(props) => props.theme.color};
-`;
-
 export const NewMessageInput: React.FC<NewMessageProps> = ({ sendMessage }) => {
   const [input, setInput] = React.useState("");
 
@@ -110,7 +104,7 @@ export const NewMessageInput: React.FC<NewMessageProps> = ({ sendMessage }) => {
         }}
         placeholder="Send a message"
       />
-      <StyledButton aria-label="Add an attachment">📎</StyledButton>
+      <AttachmentButton />
       <StyledButton onClick={send}>Send</StyledButton>
     </StyledMessageInputContainer>
   );

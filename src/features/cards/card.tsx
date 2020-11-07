@@ -2,7 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { CardProperties } from "../../core/schema";
 
-const StyledCard = styled.div<CardProperties>`
+type CardViewProps = CardProperties & {
+  removeCard?: () => void;
+  copyURL?: () => void;
+  onCardClick?: () => void;
+  customMargin?: string;
+};
+
+const StyledCard = styled.div<CardViewProps>`
   width: 150px;
   height: 150px;
   display: flex;
@@ -10,17 +17,13 @@ const StyledCard = styled.div<CardProperties>`
   justify-content: center;
   border: 2px solid black;
   border-radius: 8px;
-  margin: 2rem;
+  margin: ${({ customMargin }) => (customMargin ? customMargin : "2rem")};
   font-size: 80px;
   color: ${(props) => props.textColor};
   background-color: ${(props) => props.backgroundColor};
   position: relative;
+  cursor: ${({ onCardClick }) => (onCardClick ? "pointer" : "default")};
 `;
-
-type CardViewProps = CardProperties & {
-  removeCard?: () => void;
-  copyURL?: () => void;
-};
 
 export const CardView: React.FC<CardViewProps> = (card) => {
   const [showButtons, setShowButtons] = React.useState(false);
@@ -29,6 +32,7 @@ export const CardView: React.FC<CardViewProps> = (card) => {
       {...card}
       onMouseEnter={() => setShowButtons(true)}
       onMouseLeave={() => setShowButtons(false)}
+      onClick={card.onCardClick}
     >
       {card.removeCard && (
         <RemoveButton show={showButtons} onClick={card.removeCard} />
