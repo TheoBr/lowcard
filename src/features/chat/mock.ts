@@ -1,5 +1,6 @@
 import { Account, Message } from "../../core/schema";
 import { v4 } from "uuid";
+import * as txtgen from "txtgen";
 
 export const mockAccountFactory: () => Account = () => {
   return {
@@ -15,7 +16,7 @@ export const mockMessageFactory: () => Message = () => {
     name: "theo",
     profileImageUrl: "",
     fromAccount: mockAccountFactory(),
-    text: "Some text",
+    text: txtgen.sentence(),
     timestamp: new Date(),
   };
 };

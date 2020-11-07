@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { v4 } from "uuid";
 import { Message } from "../../core/schema";
+import { useLocalStorage } from "../../utils/use-storage";
 import { mockAccountFactory, mockMessageFactory } from "./mock";
 
 const StyledMessagesContainer = styled.div`
@@ -21,13 +22,18 @@ const StyledMessagesList = styled.div`
 
 const mockAccount = mockAccountFactory();
 
+const MESSAGE_STORAGE_KEY = "lowcard-message-storage-key";
+
 export const Messages: React.FC = () => {
-  const [messages, setMessages] = React.useState<Message[]>([
-    mockMessageFactory(),
-    mockMessageFactory(),
-    mockMessageFactory(),
-    mockMessageFactory(),
-  ]);
+  const [messages, setMessages] = useLocalStorage<Message[]>(
+    MESSAGE_STORAGE_KEY,
+    [
+      mockMessageFactory(),
+      mockMessageFactory(),
+      mockMessageFactory(),
+      mockMessageFactory(),
+    ]
+  );
 
   const sendMessage = (input: string) => {
     const newMessage: Message = {
