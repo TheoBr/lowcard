@@ -32,7 +32,7 @@ I spent a lot of time on the Cards page and am really happy with how it came out
   - [?] URL processing
 - [x] Attach card UI
 - [x] Attachment logic
-- [ ] Pro pics?
+- [x] Add New Card UI
 
 ## Things I Didn't Get To
 
