@@ -3,6 +3,7 @@ import { CardCreatorPage } from "../pages/card-creator-page";
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { CardViewPage } from "../pages/card-view-page";
+import { ChatPage } from "../pages/chat-page";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         <Switch>
           <Route path="/card">
             <CardViewPage />
+          </Route>
+          <Route path="/chat">
+            <ChatPage />
           </Route>
           <Route path="/">
             <CardCreatorPage />

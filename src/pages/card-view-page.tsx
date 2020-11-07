@@ -1,18 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { CardView } from "../features/cards/card";
+import { PageLayout } from "../ui/page";
 
-const CardPageLayout = styled.div`
+const CardPageLayout = styled(PageLayout)`
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-family: ${(props) => props.theme.font};
-  font-weight: 700;
-  font-size: 20px;
-
-  color: ${(props) => props.theme.color};
   background: linear-gradient(
       0deg,
       rgba(0, 106, 255, 0.3) 0%,

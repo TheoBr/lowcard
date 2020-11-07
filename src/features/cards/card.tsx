@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
-export interface CardProperties {
-  backgroundColor: string;
-  textColor: string;
-  char: string;
-}
+import { CardProperties } from "../../core/schema";
 
 const StyledCard = styled.div<CardProperties>`
   width: 150px;

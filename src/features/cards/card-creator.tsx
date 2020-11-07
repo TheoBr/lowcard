@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { CardProperties, CardView } from "./card";
+import { CardProperties } from "../../core/schema";
+import { StyledHeaderWithBlob } from "../../ui/header";
+import { CardView } from "./card";
 
 export interface CardCreatorProps {
   addCard: (card: CardProperties) => void;
@@ -12,17 +14,6 @@ const CreatorLayout = styled.div`
   align-items: center;
   padding-top: 1rem;
   font-weight: 700;
-`;
-
-const CreatorWrapper = styled.div`
-  background: linear-gradient(
-      0deg,
-      rgba(0, 106, 255, 0.3) 0%,
-      rgba(77, 196, 125, 0.7) 100%
-    ),
-    url("/static/checker.svg");
-  background-color: #48bb78;
-  background-size: auto, 300px;
 `;
 
 const DEFAULT_CARD = {
@@ -37,7 +28,7 @@ export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
   );
 
   return (
-    <CreatorWrapper>
+    <StyledHeaderWithBlob>
       <CreatorLayout>
         <CardView {...cardProps} />
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -121,14 +112,6 @@ export const CardCreator: React.FC<CardCreatorProps> = ({ addCard }) => {
           </div>
         </div>
       </CreatorLayout>
-      <img
-        src="/static/blob_cut.svg"
-        style={{
-          display: "block",
-          zIndex: 10,
-          marginBottom: "-1px",
-        }}
-      />
-    </CreatorWrapper>
+    </StyledHeaderWithBlob>
   );
 };
