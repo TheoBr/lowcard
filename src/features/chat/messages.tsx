@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 import { Message } from "../../core/schema";
 import { useLocalStorage } from "../../utils/use-storage";
 import { mockAccountFactory, mockMessageFactory } from "./mock";
+import { MessageItem } from "./message-item";
 
 const StyledMessagesContainer = styled.div`
   display: flex;
@@ -55,24 +56,6 @@ export const Messages: React.FC = () => {
       </StyledMessagesList>
       <NewMessageInput sendMessage={sendMessage} />
     </StyledMessagesContainer>
-  );
-};
-
-const StyledMessage = styled.div`
-  display: flex;
-  padding: 1rem;
-`;
-const Author = styled.div`
-  color: red;
-  padding-right: 1rem;
-`;
-
-export const MessageItem: React.FC<Message> = (message) => {
-  return (
-    <StyledMessage>
-      <Author>{message.fromAccount.name + ":"}</Author>
-      {message.text}
-    </StyledMessage>
   );
 };
 

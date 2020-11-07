@@ -40,7 +40,7 @@ const StyledHeaderMenu = styled.div`
   top: 4px;
 `;
 
-const StyledLink = styled.a`
+const StyledHeaderLink = styled.a`
   transition-property: color;
   transition-duration: 0.3s;
   color: ${(props) => props.theme.color};
@@ -54,9 +54,9 @@ const StyledLink = styled.a`
 export const HeaderMenu = () => {
   return (
     <StyledHeaderMenu>
-      <StyledLink href="https://lowkey.gg/">LOWKEY</StyledLink>
-      <StyledLink href="/chat">Chat</StyledLink>
-      <StyledLink href="/">Card Creator</StyledLink>
+      <StyledHeaderLink href="https://lowkey.gg/">LOWKEY</StyledHeaderLink>
+      <StyledHeaderLink href="/chat">Chat</StyledHeaderLink>
+      <StyledHeaderLink href="/">Card Creator</StyledHeaderLink>
     </StyledHeaderMenu>
   );
 };
