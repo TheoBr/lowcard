@@ -30,14 +30,17 @@ export const Link: React.FC = ({ children }) => (
 );
 
 export const MessageItem: React.FC<Message> = (message) => {
-  const links = new linkify().match(message.text);
-  console.log(links);
+  const urls = new linkify().match(message.text);
   return (
     <StyledMessage>
       <Author>{message.fromAccount.name}</Author>
       <ReactLinkify
-        componentDecorator={(link, decoratedText) => {
-          return <StyledLink href={link}>{decoratedText}</StyledLink>;
+        componentDecorator={(link, decoratedText, key) => {
+          return (
+            <StyledLink href={link} key={key}>
+              {decoratedText}
+            </StyledLink>
+          );
         }}
         textDecorator={(url) => {
           const formatted = url.replace(/(^\w+:|^)\/\//, "");
@@ -48,6 +51,27 @@ export const MessageItem: React.FC<Message> = (message) => {
       >
         {message.text}
       </ReactLinkify>
+      <div>
+        {urls &&
+          urls.map((link, index) => <MetadataView link={link} key={index} />)}
+      </div>
     </StyledMessage>
   );
+};
+
+const supportedHosts = ["twitter.com", window.location.hostname, "youtube.com"];
+
+export const MetadataView: React.FC<{ link: linkify.Match }> = ({ link }) => {
+  const url = new URL(link.url);
+
+  // Early escape if link type isn't supported
+  if (!supportedHosts.includes(url.hostname)) {
+    return null;
+  }
+
+  // Twitter embed
+  if (url.hostname === "twitter.com") {
+    return <div>Tweet</div>;
+  }
+  return <div>{url.host}</div>;
 };
