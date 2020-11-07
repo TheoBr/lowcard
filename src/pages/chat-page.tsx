@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Messages } from "../features/chat/messages";
-import { StyledHeader } from "../ui/header";
+import { HeaderMenu, StyledHeader } from "../ui/header";
 import { PageLayout } from "../ui/page";
 
 const Header = styled(StyledHeader)`
@@ -18,8 +18,9 @@ const ChatPageLayout = styled(PageLayout)`
 export const ChatPage: React.FC = () => {
   return (
     <ChatPageLayout>
+      <HeaderMenu />
       <StyledHeader>
-        <Header>Chat page</Header>
+        <Header>#chat</Header>
       </StyledHeader>
       <Messages />
     </ChatPageLayout>

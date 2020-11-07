@@ -15,6 +15,7 @@ export const StyledHeader = styled.div`
 export const StyledHeaderWithBlob: React.FC = ({ children }) => {
   return (
     <StyledHeader>
+      <HeaderMenu />
       {children}
       <img
         src="/static/blob_cut.svg"
@@ -25,5 +26,35 @@ export const StyledHeaderWithBlob: React.FC = ({ children }) => {
         }}
       />
     </StyledHeader>
+  );
+};
+
+const StyledHeaderMenu = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  right: 4px;
+  top: 4px;
+`;
+
+const StyledLink = styled.a`
+  transition-property: color;
+  transition-duration: 0.3s;
+  color: ${(props) => props.theme.color};
+  text-decoration: none;
+  :hover {
+    color: #54ebf0;
+  }
+  padding-bottom: 0.25rem;
+`;
+
+export const HeaderMenu = () => {
+  return (
+    <StyledHeaderMenu>
+      <StyledLink href="https://lowkey.gg/">LOWKEY</StyledLink>
+      <StyledLink href="/chat">Chat</StyledLink>
+      <StyledLink href="/">Card Creator</StyledLink>
+    </StyledHeaderMenu>
   );
 };

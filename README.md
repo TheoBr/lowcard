@@ -24,10 +24,15 @@ I spent a lot of time on the Cards page and am really happy with how it came out
 
 - [x] Delete button
 - [x] Copy button
+- [x] Header links
 
 ### Part 2
 
-- [ ] All of it
+- [ ] Embed logic
+  - [ ] URL processing
+- [ ] Attach card UI
+- [ ] Attachment logic
+- [ ] Pro pics?
 
 ## Things I Didn't Get To
 
