@@ -2,9 +2,8 @@ import React from "react";
 import ReactLinkify from "react-linkify";
 import styled from "styled-components";
 import linkify from "linkify-it";
-import { Message } from "../../core/schema";
-import { CardView } from "../cards/card";
-import { getCardParamsFromURL } from "../../utils/get-params-from-url";
+import { Message } from "../../../core/schema";
+import { MetadataView } from "./metadata";
 
 const StyledMessage = styled.div`
   display: inline-block;
@@ -64,37 +63,4 @@ export const MessageItem: React.FC<Message> = (message) => {
       </div>
     </StyledMessage>
   );
-};
-
-export const MetadataView: React.FC<{ link: linkify.Match }> = ({ link }) => {
-  const url = new URL(link.url);
-
-  // Twitter embed
-  if (url.hostname === "twitter.com") {
-    // return <div>Tweet Embed</div>;
-    return null;
-  }
-
-  // Twitter embed
-  if (url.hostname === "youtube.com") {
-    // return <div>Youtube Embed</div>;
-    return null;
-  }
-
-  // Card embed
-  if (url.hostname === window.location.hostname) {
-    const cardProps = getCardParamsFromURL(url.searchParams);
-    if (cardProps) {
-      return (
-        <CardView
-          {...cardProps}
-          onCardClick={() => {
-            window.open(url.href);
-          }}
-        />
-      );
-    }
-  }
-
-  return null;
 };

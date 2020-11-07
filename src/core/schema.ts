@@ -15,6 +15,7 @@ export interface Attachments {
   uuid: string;
   entityType: "CARD" | "URL";
   card?: CardProperties;
+  metadata?: YoutubeLinkMetadata | TwitterLinkMetadata;
 }
 
 export interface Message {
@@ -23,6 +24,20 @@ export interface Message {
   fromAccount: Account;
   attachments?: Attachments[];
   timestamp: Date;
+}
+
+export interface YoutubeLinkMetadata {
+  title: string;
+  description: string;
+  thumbnail: string;
+}
+
+export interface TwitterLinkMetadata {
+  fromAccount: {
+    name: string;
+    profileImage: string;
+  };
+  content: string;
 }
 
 // Universal storage keys (in lieu of backend)

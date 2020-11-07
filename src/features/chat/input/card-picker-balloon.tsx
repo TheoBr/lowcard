@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useLocalStorage } from "../../../utils/use-storage";
 import { CardProperties, CARDS_STORAGE_KEY } from "../../../core/schema";
 import { CardView } from "../../cards/card";
-import { CardCreatorComponent } from "../../cards/card-creator";
+import { CardCreator } from "../../cards/card-creator";
 
 const StyledCardList = styled.div`
   display: flex;
@@ -80,7 +80,7 @@ const CreateCard: React.FC<CreateCardProps> = ({
   return (
     <StyledCreateCard>
       <RemoveButton onClick={cancelCreation} />
-      <CardCreatorComponent addCard={saveCard} centerContent />
+      <CardCreator addCard={saveCard} centerContent />
     </StyledCreateCard>
   );
 };

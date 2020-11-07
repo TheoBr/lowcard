@@ -33,6 +33,13 @@ I spent a lot of time on the Cards page and am really happy with how it came out
 - [x] Attach card UI
 - [x] Attachment logic
 - [x] Add New Card UI
+- [ ] Card embed mock for youtube/twitter
+
+### Other
+
+- [ ] Clean up readme
+  - [ ] Tech decisions
+  - [ ] Styled Components thoughts
 
 ## Things I Didn't Get To
 

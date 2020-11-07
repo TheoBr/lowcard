@@ -1,7 +1,5 @@
 import React from "react";
-import styled from "styled-components";
 import { CardProperties } from "../../core/schema";
-import { StyledHeaderWithBlob } from "../../ui/header";
 import { CardView } from "./card";
 
 export interface CardCreatorProps {
@@ -9,21 +7,15 @@ export interface CardCreatorProps {
   centerContent?: boolean;
 }
 
-const CreatorLayout = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding-top: 1rem;
-  font-weight: 700;
-`;
-
 const DEFAULT_CARD = {
   backgroundColor: "#000000",
   textColor: "#ffffff",
   char: "A",
 };
 
-export const CardCreatorComponent: React.FC<CardCreatorProps> = ({
+// Base component that returns fragment-wrapped creation components
+// Allows for easy styling by parent
+export const CardCreator: React.FC<CardCreatorProps> = ({
   addCard,
   centerContent,
 }) => {
@@ -118,15 +110,5 @@ export const CardCreatorComponent: React.FC<CardCreatorProps> = ({
         </div>
       </div>
     </>
-  );
-};
-
-export const CardCreator: React.FC<CardCreatorProps> = (props) => {
-  return (
-    <StyledHeaderWithBlob>
-      <CreatorLayout>
-        <CardCreatorComponent {...props} />
-      </CreatorLayout>
-    </StyledHeaderWithBlob>
   );
 };

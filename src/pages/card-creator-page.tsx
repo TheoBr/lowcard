@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useLocalStorage } from "../utils/use-storage";
 import { CardView } from "../features/cards/card";
-import { CardCreator } from "../features/cards/card-creator";
 import { PageLayout } from "../ui/page";
 import { CardProperties, CARDS_STORAGE_KEY } from "../core/schema";
 import { getCardURL } from "../utils/get-card-url";
+import { CardCreatorPageHeader } from "../features/cards/card-creator-page-header";
 
 const CardPageLayout = styled(PageLayout)`
   display: flex;
@@ -29,7 +29,7 @@ export const CardCreatorPage = () => {
 
   return (
     <CardPageLayout>
-      <CardCreator
+      <CardCreatorPageHeader
         addCard={(newCard) =>
           setCards((cc: CardProperties[]) => [newCard, ...cc])
         }
