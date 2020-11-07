@@ -80,8 +80,27 @@ export interface NewMessageProps {
   sendMessage: (message: string) => void;
 }
 
-const StyledMessageInput = styled.div`
+const StyledMessageInputContainer = styled.div`
+  margin: 1rem;
+  display: flex;
+`;
+
+const StyledInput = styled.input`
+  border-radius: 8px;
+  background-color: #032c40;
+  flex-grow: 1;
+  font-size: 20px;
   padding: 1rem;
+  border: none;
+  color: ${(props) => props.theme.color};
+`;
+
+const StyledButton = styled.button`
+  font-size: 20px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  color: ${(props) => props.theme.color};
 `;
 
 export const NewMessageInput: React.FC<NewMessageProps> = ({ sendMessage }) => {
@@ -96,8 +115,8 @@ export const NewMessageInput: React.FC<NewMessageProps> = ({ sendMessage }) => {
   };
 
   return (
-    <StyledMessageInput>
-      <input
+    <StyledMessageInputContainer>
+      <StyledInput
         onChange={(e) => setInput(e.target.value)}
         value={input}
         onKeyPress={(e) => {
@@ -105,8 +124,10 @@ export const NewMessageInput: React.FC<NewMessageProps> = ({ sendMessage }) => {
             send();
           }
         }}
+        placeholder="Send a message"
       />
-      <button onClick={send}>Send</button>
-    </StyledMessageInput>
+      <StyledButton aria-label="Add an attachment">📎 </StyledButton>
+      <StyledButton onClick={send}>Send</StyledButton>
+    </StyledMessageInputContainer>
   );
 };

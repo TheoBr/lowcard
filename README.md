@@ -4,6 +4,8 @@ A card and chat app
 
 ## Notes
 
+I spent a lot of time on the Cards page and am really happy with how it came out.
+
 ### Fun Challenges
 
 - The character input had some interesting gotchas
@@ -26,3 +28,18 @@ A card and chat app
 ### Part 2
 
 - [ ] All of it
+
+## Things I Didn't Get To
+
+This is a small list of stuff I thought about but didn't get to
+
+- Better feedback on copy and remove successful
+  - Toast notification or something
+- Standardized UI components with generic props for reused values
+  - `<GenericButton />`, `<GenericLayout />`, `<GenericInput />`
+
+```tsx
+<GenericLayout padding={1} borderBottom display="flex">
+  {someStuff}
+</GenericLayout>
+```

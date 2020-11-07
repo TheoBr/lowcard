@@ -4,7 +4,6 @@ import { CardView } from "../features/cards/card";
 import { PageLayout } from "../ui/page";
 
 const CardPageLayout = styled(PageLayout)`
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
