@@ -51,6 +51,8 @@ A card and chat demo app written with Typescript, React, and `styled-components`
 - local storage doesn't push updates
   - Bad if >1 window open and changes are made to saved cards
   - i.e. add 3 cards in chat with card creator window open, delete one card in creator window, 3 new cards vanish
+- Not particularly responsive
+  - Header is rough on mobile
 
 ## Things I Didn't Get To
 
