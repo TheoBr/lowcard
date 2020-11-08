@@ -38,10 +38,17 @@ A card and chat demo app written with Typescript, React, and `styled-components`
 
 ## Technical decisions
 
-- Create React App used for ease
+- Create React App used for ease of setup
 - StyledComponents was used over Tailwind
   - I'm more familiar with StyledComponents
   - Wanted to start a new SC project from scratch using some new patterns, v happy with it
+- Custom `useLocalStorage` hook to act as pseudo-backend
+
+## Known issues
+
+- local storage doesn't push updates
+  - Bad if >1 window open and changes are made to saved cards
+  - i.e. add 3 cards in chat with card creator window open, delete one card in creator window, 3 new cards vanish
 
 ## Things I Didn't Get To
 
@@ -50,6 +57,8 @@ This is a small list of stuff I thought about but didn't get to
 - https://github.com/tleunen/babel-plugin-module-resolver/
   - Seriously wish I got to this, some of these import paths are a mess
   - Doesn't play nice with CRA though :( +10 points to Snowpack
+- Animations
+  - I usually animate element creation/removal but wanted to focus on maximizing functionality
 - Better feedback on copy and remove successful
   - Toast notification or something
 - Mocked 'login'/account creation
