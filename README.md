@@ -2,6 +2,8 @@
 
 A card and chat demo app written with Typescript, React, and `styled-components`
 
+[Live Demo](https://lowcard.netlify.app/)
+
 ## Notes
 
 - Majority of time spent on cards page
