@@ -1,5 +1,7 @@
 # LowCard
 
+![screenshot](/readme-assets/screenshot.png)
+
 A card and chat demo app written with Typescript, React, and `styled-components`
 
 [Live Demo](https://lowcard.netlify.app/)
